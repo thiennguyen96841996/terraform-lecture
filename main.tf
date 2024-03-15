@@ -9,6 +9,13 @@ terraform {
       version = "~> 3.0"
     }
   }
+  // tfstateをS3へ保管・terraform init再実行
+  backend "s3" {
+    bucket  = "tastylog-tfstate-bucket" // 先にAWSコンソールにS3のbucketを作成する必要
+    key     = "tastylog-dev.tfstate"
+    region  = "ap-northeast-1"
+    profile = "terraform"
+  }
 }
 
 # ---------------------------------------------
